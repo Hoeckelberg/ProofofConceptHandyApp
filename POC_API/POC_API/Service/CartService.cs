@@ -66,7 +66,7 @@ namespace POC_API.Service
             }
             _repo.DeleteById(result);
         }
-        public Cart UpdateCart(int id)
+        public Cart UpdateCart(int id, PostCartDTO updateCartDTO)
         {
             var getbyId = _repo.GetById(id);
             if (getbyId == null)

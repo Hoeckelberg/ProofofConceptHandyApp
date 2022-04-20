@@ -70,7 +70,7 @@ namespace POC_API.Service
             }
             _repo.DeleteById(result);
         }
-        public Customer UpdateCustomer(int id)
+        public Customer UpdateCustomer(int id, PostCustomerDTO updateCustomerDTO)
         {
             var getbyId = _repo.GetById(id);
             if (getbyId == null)

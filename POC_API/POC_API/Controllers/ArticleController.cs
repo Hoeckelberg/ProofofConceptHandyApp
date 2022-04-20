@@ -40,7 +40,7 @@ namespace POC_API.Controllers
             return Ok(result);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteReiseZiel(int id)
+        public IActionResult DeleteArticle(int id)
         {
             _articleService.DeleteById(id);
             return NoContent();
