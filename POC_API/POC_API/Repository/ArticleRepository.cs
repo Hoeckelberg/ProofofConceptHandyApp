@@ -22,19 +22,26 @@ namespace POC_API.Repository
         }
         public Article Create(Article postArticle)
         {
-            Article article = new Article(postArticle.Name, postArticle.Price, postArticle.Description, postArticle.Available, postArticle.Manufacturer);
-            var entityEntry = context.articles.Add(postArticle);
+            Article article = new Article()
+            {
+                Name = postArticle.Name,
+                Price = postArticle.Price,
+                Description = postArticle.Description,
+                Available = postArticle.Available,
+                Manufacturer = postArticle.Manufacturer
+            };
+            var entityEntry = context.articles.Add(article);
             context.SaveChanges();
             return entityEntry.Entity;
         }
-        public void DeleteById(ReiseZiel reiseZiel)
+        public void DeleteById(Article article)
         {
-            context.ReiseZiele.Remove(reiseZiel);
+            context.articles.Remove(article);
             context.SaveChanges();
         }
-        public ReiseZiel Update(ReiseZiel reiseZiel)
+        public Article Update(Article article)
         {
-            var result = context.ReiseZiele.Update(reiseZiel);
+            var result = context.articles.Update(article);
             context.SaveChanges();
             return result.Entity;
         }

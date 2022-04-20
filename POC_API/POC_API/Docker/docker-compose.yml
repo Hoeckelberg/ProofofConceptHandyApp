@@ -1,0 +1,9 @@
+﻿version: "3.8"
+services:
+ POC-database:
+   image: mcr.microsoft.com/mssql/server:2019-latest
+   ports:
+     - "14330:14330"
+   environment:
+     - ACCEPT_EULA=Y
+     - SA_PASSWORD=novaCapta007!
