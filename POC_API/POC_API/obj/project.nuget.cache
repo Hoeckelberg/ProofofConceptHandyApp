@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "k25JwD7sqSAM8KoMYyyhz/ZUbQkYKfNvuV8gMnZF9fqLxiJu75Nfr4T92ZtxcVlCoM6PtWKlU806wywdCIAakA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MarvinHöck_e62hf9r\\OneDrive - TIMETOACT Software & Consulting GmbH\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\POC_API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
