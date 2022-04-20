@@ -1,0 +1,23 @@
+tbl_customers
+- int ID (PK)
+- varchar name
+- varchar address
+- int phoneNumber
+- varchar owner
+
+
+tbl_article
+- int ID (PK)
+- varchar name
+- decimal price
+- varchar description
+- bool available
+- varchar manufacturer
+
+
+tbl_cart
+- int ID (PK)
+- int articleID
+- int customerID
+- int quantity
+
