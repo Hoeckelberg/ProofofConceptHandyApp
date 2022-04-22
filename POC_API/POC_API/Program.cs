@@ -28,6 +28,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseRouting();
+
+    app.UseCors(x => x
+    .AllowAnyHeader()
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .SetIsOriginAllowed(origin => true));
+
 }
 
 app.UseHttpsRedirection();

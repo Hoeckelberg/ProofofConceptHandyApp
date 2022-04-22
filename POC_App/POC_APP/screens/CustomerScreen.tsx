@@ -1,14 +1,25 @@
 import { StyleSheet } from 'react-native';
+import React, {useState, useEffect} from 'react';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import ICustomer from '../Interfaces/ICustomer';
+import customerProvider from '../provider/CustomerProvider';
 
 export default function CustomerScreen() {
+  const [customer, setCustomer] = useState<ICustomer[]>([]);
+  useEffect(() => {
+    customerProvider().then(res => {
+      setCustomer(res);
+      console.log(res);
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Customer Screen</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/CustomerScreen.tsx" />
+      {customer.map((a, key) => {
+        return <Text key={key}>{a.name}</Text>;
+      })}
     </View>
   );
 }

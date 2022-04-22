@@ -1,39 +1,29 @@
-import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import IArticle from '../Interfaces/IArticle';
+import articleProvider from '../provider/ArticleProvider';
 import { RootTabScreenProps } from '../types';
+import axios from 'axios';
 
 export default function ArticleScreen({ navigation }: RootTabScreenProps<'Article'>) {
+  const [article, setArticle] = useState<IArticle[]>([]);
+  useEffect(() => {
+    articleProvider().then(res => {
+      setArticle(res);
+      console.log(res);
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Article Screen</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/ArticleScreen.tsx" />
+      {article?article.map((a, key) => {
+        return <Text key={key}>{a.name}</Text>;
+      }): null}
     </View>
   );
 }
-
-interface Article {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  available: boolean;
-  manufacturer: string;
-}
-
-const defaultArticle: Article[] = [];
-
-const [articles, setArticles] = useState(defaultArticle);
-
-React.useEffect(() => {
-  // fetch data from backend API and set to state
-  axios.get<Article[]>('http://localhost:8080/api/articles').then(response => {
-    setArticles(response.data);
-  });
-}, []);
 
 const styles = StyleSheet.create({
   container: {
