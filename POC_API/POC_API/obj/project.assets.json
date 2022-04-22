@@ -2059,23 +2059,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MarvinHöck_e62hf9r\\OneDrive - TIMETOACT Software & Consulting GmbH\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\POC_API.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\POC_API.csproj",
       "projectName": "POC_API",
-      "projectPath": "C:\\Users\\MarvinHöck_e62hf9r\\OneDrive - TIMETOACT Software & Consulting GmbH\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\POC_API.csproj",
-      "packagesPath": "C:\\Users\\MarvinHöck_e62hf9r\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MarvinHöck_e62hf9r\\OneDrive - TIMETOACT Software & Consulting GmbH\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\POC_API.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\ProofofConceptHandyApp\\POC_API\\POC_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\MarvinHöck_e62hf9r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
