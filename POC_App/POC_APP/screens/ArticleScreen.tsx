@@ -1,5 +1,6 @@
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet } from 'react-native';
-
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -13,6 +14,26 @@ export default function ArticleScreen({ navigation }: RootTabScreenProps<'Articl
     </View>
   );
 }
+
+interface Article {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  available: boolean;
+  manufacturer: string;
+}
+
+const defaultArticle: Article[] = [];
+
+const [articles, setArticles] = useState(defaultArticle);
+
+React.useEffect(() => {
+  // fetch data from backend API and set to state
+  axios.get<Article[]>('http://localhost:8080/api/articles').then(response => {
+    setArticles(response.data);
+  });
+}, []);
 
 const styles = StyleSheet.create({
   container: {
