@@ -4,9 +4,8 @@ import ICustomer from '../Interfaces/ICustomer';
 const customerProvider = async (): Promise < ICustomer[] > => {
     let customers: ICustomer[] = [];
     try {
-        customers = await axios.get('https://localhost:7013/api/customer', {
+        customers = await axios.get('https://10.0.2.2:7013/api/customer', {
             headers: {
-                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             }
         });

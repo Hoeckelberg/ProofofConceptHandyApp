@@ -20,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,11 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseRouting();
 
-    app.UseCors(x => x
-    .AllowAnyHeader()
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .SetIsOriginAllowed(origin => true));
+    app.UseCors();
 
 }
 
