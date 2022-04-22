@@ -48,7 +48,7 @@ namespace POC_API.Service
         }
         public Article Create(PostArticleDTO postArticleDTO)
         {
-            var result = _repo.Create(new Article()
+            var result = _repo.Create(new PostArticleDTO()
             {
                 Name = postArticleDTO.Name,
                 Price = postArticleDTO.Price,
@@ -76,21 +76,19 @@ namespace POC_API.Service
         }
         public Article UpdateArticle(int id, PostArticleDTO updateArticleDTO)
         {
-            var getbyId = _repo.GetById(id);
-            if (getbyId == null)
+            var article = _repo.GetById(id);
+            if (article == null)
             {
                 throw new Exception("ID was not found");
             }
-            var result = _repo.Update(getbyId);
-            return new Article()
-            {
-                Id = result.Id,
-                Name = result.Name,
-                Price = result.Price,
-                Description = result.Description,
-                Available = result.Available,
-                Manufacturer = result.Manufacturer,
-            };
+            article.Id = id;
+            article.Name = updateArticleDTO.Name;
+            article.Price = updateArticleDTO.Price;
+            article.Description = updateArticleDTO.Description;
+            article.Available = updateArticleDTO.Available;
+            article.Manufacturer = updateArticleDTO.Manufacturer;
+            _repo.Update(article);
+            return article;
         }
     }
 }

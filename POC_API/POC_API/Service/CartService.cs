@@ -44,7 +44,7 @@ namespace POC_API.Service
         }
         public Cart Create(PostCartDTO postCartDTO)
         {
-            var result = _repo.Create(new Cart()
+            var result = _repo.Create(new PostCartDTO()
             {
                 ArticleId = postCartDTO.ArticleId,
                 CustomerId = postCartDTO.CustomerId,
@@ -68,19 +68,17 @@ namespace POC_API.Service
         }
         public Cart UpdateCart(int id, PostCartDTO updateCartDTO)
         {
-            var getbyId = _repo.GetById(id);
-            if (getbyId == null)
+            var cart = _repo.GetById(id);
+            if (cart == null)
             {
                 throw new Exception("ID was not found");
             }
-            var result = _repo.Update(getbyId);
-            return new Cart()
-            {
-                Id = result.Id,
-                ArticleId = result.ArticleId,
-                CustomerId = result.CustomerId,
-                Quantity = result.Quantity,
-            };
+            cart.Id = id;
+            cart.ArticleId = updateCartDTO.ArticleId;
+            cart.CustomerId = updateCartDTO.CustomerId;
+            cart.Quantity = updateCartDTO.Quantity;
+            _repo.Update(cart);
+            return cart;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace POC_API.Service
         }
         public Customer Create(PostCustomerDTO postCustomerDTO)
         {
-            var result = _repo.Create(new Customer()
+            var result = _repo.Create(new PostCustomerDTO()
             {
                 Name = postCustomerDTO.Name,
                 Address = postCustomerDTO.Address,
@@ -72,20 +72,18 @@ namespace POC_API.Service
         }
         public Customer UpdateCustomer(int id, PostCustomerDTO updateCustomerDTO)
         {
-            var getbyId = _repo.GetById(id);
-            if (getbyId == null)
+            var customer = _repo.GetById(id);
+            if (customer == null)
             {
                 throw new Exception("ID was not found");
             }
-            var result = _repo.Update(getbyId);
-            return new Customer()
-            {
-                Id = result.Id,
-                Name = result.Name,
-                Address = result.Address,
-                Owner = result.Owner,
-                PhoneNumber = result.PhoneNumber,
-            };
+            customer.Id = id;
+            customer.Name = updateCustomerDTO.Name;
+            customer.Address = updateCustomerDTO.Address;
+            customer.Owner = updateCustomerDTO.Owner;
+            customer.PhoneNumber = updateCustomerDTO.PhoneNumber;
+            _repo.Update(customer);
+            return customer;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using POC_API.Data;
+using POC_API.DTO;
 using POC_API.Model;
 
 namespace POC_API.Repository
@@ -20,13 +21,13 @@ namespace POC_API.Repository
             var result = context.carts.Find(id);
             return result;
         }
-        public Cart Create(Cart postCart)
+        public Cart Create(PostCartDTO postCartDTO)
         {
             Cart cart = new Cart()
             {
-                ArticleId = postCart.ArticleId,
-                CustomerId = postCart.CustomerId,
-                Quantity = postCart.Quantity,
+                ArticleId = postCartDTO.ArticleId,
+                CustomerId = postCartDTO.CustomerId,
+                Quantity = postCartDTO.Quantity,
             };
             var entityEntry = context.carts.Add(cart);
             context.SaveChanges();

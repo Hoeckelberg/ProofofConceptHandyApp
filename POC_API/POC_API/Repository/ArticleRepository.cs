@@ -1,4 +1,5 @@
 ﻿using POC_API.Data;
+using POC_API.DTO;
 using POC_API.Model;
 
 namespace POC_API.Repository
@@ -20,15 +21,15 @@ namespace POC_API.Repository
             var result = context.articles.Find(id);
             return result;
         }
-        public Article Create(Article postArticle)
+        public Article Create(PostArticleDTO postArticleDTO)
         {
             Article article = new Article()
             {
-                Name = postArticle.Name,
-                Price = postArticle.Price,
-                Description = postArticle.Description,
-                Available = postArticle.Available,
-                Manufacturer = postArticle.Manufacturer
+                Name = postArticleDTO.Name,
+                Price = postArticleDTO.Price,
+                Description = postArticleDTO.Description,
+                Available = postArticleDTO.Available,
+                Manufacturer = postArticleDTO.Manufacturer
             };
             var entityEntry = context.articles.Add(article);
             context.SaveChanges();

@@ -1,4 +1,5 @@
 ﻿using POC_API.Data;
+using POC_API.DTO;
 using POC_API.Model;
 
 namespace POC_API.Repository
@@ -20,14 +21,14 @@ namespace POC_API.Repository
             var result = context.customers.Find(id);
             return result;
         }
-        public Customer Create(Customer postCustomer)
+        public Customer Create(PostCustomerDTO postCustomerDTO)
         {
             Customer customer = new Customer()
             {
-                Name = postCustomer.Name,
-                Address = postCustomer.Address,
-                Owner = postCustomer.Owner,
-                PhoneNumber = postCustomer.PhoneNumber,
+                Name = postCustomerDTO.Name,
+                Address = postCustomerDTO.Address,
+                Owner = postCustomerDTO.Owner,
+                PhoneNumber = postCustomerDTO.PhoneNumber,
             };
             var entityEntry = context.customers.Add(customer);
             context.SaveChanges();
