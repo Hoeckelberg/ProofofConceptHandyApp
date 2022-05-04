@@ -18,7 +18,7 @@ export default function CustomerScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Customer Screen</Text>
       {customer.map((a, key) => {
-        return <Text key={key}>{a.name}</Text>;
+        return <Text key={key}>ID: {a.id}, Name: {a.name}, Address: {a.address}, Phone Number: {a.phoneNumber}, Owner: {a.owner}</Text>;
       })}
     </View>
   );

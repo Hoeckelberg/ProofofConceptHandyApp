@@ -4,11 +4,15 @@ import ICustomer from '../Interfaces/ICustomer';
 const customerProvider = async (): Promise < ICustomer[] > => {
     let customers: ICustomer[] = [];
     try {
-        customers = await axios.get('https://10.0.2.2:7013/api/customer', {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+        // customers = await axios.get('https://10.0.2.2:7013/api/customer', {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     }
+        // });
+        const response = await fetch('https://10.0.2.2:7013/api/customer', {mode: 'cors'});
+        const data = await response.json();
+        console.log("AAAA",{data});
+        customers = data;
     } catch (error) {
         console.log(error);
         customers = [{

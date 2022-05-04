@@ -19,7 +19,7 @@ export default function ArticleScreen({ navigation }: RootTabScreenProps<'Articl
     <View style={styles.container}>
       <Text style={styles.title}>Article Screen</Text>
       {article?article.map((a, key) => {
-        return <Text key={key}>{a.name}</Text>;
+        return <Text key={key}>ID: {a.id}, Name: {a.name}, Price: {a.price}, Description: {a.description}, Available: {a.available}, Manufacturer: {a.manufacturer}</Text>;
       }): null}
     </View>
   );
