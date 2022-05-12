@@ -1,17 +1,19 @@
-import axios from 'axios';
 import ICustomer from '../Interfaces/ICustomer';
+import axios from 'axios';
 
 const customerProvider = async (): Promise < ICustomer[] > => {
     let customers: ICustomer[] = [];
     try {
-        // customers = await axios.get('https://10.0.2.2:7013/api/customer', {
+        // customers = await axios.get('https://127.0.0.1:7013/api/customer', {
         //     headers: {
         //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json',
+        //         'Access-Control-Allow-Origin': '*',
         //     }
         // });
-        const response = await fetch('https://10.0.2.2:7013/api/customer', {mode: 'cors'});
+        const response = await fetch('https://localhost:7013/api/customer', {mode: 'cors'});
         const data = await response.json();
-        console.log("AAAA",{data});
+        console.log("Customers: ",{data});
         customers = data;
     } catch (error) {
         console.log(error);

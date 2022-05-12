@@ -3,6 +3,7 @@ using POC_API.Model;
 using POC_API.Repository;
 using Microsoft.EntityFrameworkCore;
 using POC_API.Data;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,9 +37,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate();
 var app = builder.Build();
 
-
+app.UseAuthentication();
+app.UseCertificateForwarding();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();

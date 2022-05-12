@@ -1,20 +1,22 @@
-import axios from 'axios';
 import IArticle from '../Interfaces/IArticle';
+import axios from 'axios';
+
 
 const articleProvider = async ():Promise<IArticle[]> => {
     let articles:IArticle[] = [];
     try {
-        // articles = await axios.get('10.0.2.2:7013/api/article', {
+        // articles = await axios.get('https://127.0.0.1:7013/api/article', {
         //     headers: {
         //         'Content-Type': 'application/json',
         //         'Accept': 'application/json',
         //         'Access-Control-Allow-Origin': '*',
         //     }
         // });
-        const response = await fetch('https://10.0.2.2:7013/api/article', {mode: 'cors'});
+        const response = await fetch('https://localhost:7013/api/article', {mode: 'cors'});
         const data = await response.json();
-        console.log("AAAA",{data});
+        console.log("Articles: ",{data});
         articles = data;
+        
     } catch (error) {
         console.log(error);
         articles = [{

@@ -120,3 +120,4 @@ C:\Users\Admin\Desktop\ProofofConceptHandyApp\POC_API\POC_API\obj\Debug\net6.0\r
 C:\Users\Admin\Desktop\ProofofConceptHandyApp\POC_API\POC_API\obj\Debug\net6.0\POC_API.pdb
 C:\Users\Admin\Desktop\ProofofConceptHandyApp\POC_API\POC_API\obj\Debug\net6.0\POC_API.genruntimeconfig.cache
 C:\Users\Admin\Desktop\ProofofConceptHandyApp\POC_API\POC_API\obj\Debug\net6.0\ref\POC_API.dll
+C:\Users\MarvinHöck_e62hf9r\OneDrive - TIMETOACT Software & Consulting GmbH\Desktop\ProofofConceptHandyApp\POC_API\POC_API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Certificate.dll
