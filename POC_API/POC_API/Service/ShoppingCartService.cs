@@ -4,20 +4,20 @@ using POC_API.Repository;
 
 namespace POC_API.Service
 {
-    public class CartService
+    public class ShoppingCartService
     {
-        private readonly CartRepository _repo;
-        public CartService(CartRepository repo)
+        private readonly ShoppingCartRepository _repo;
+        public ShoppingCartService(ShoppingCartRepository repo)
         {
             _repo = repo;
         }
-        public List<Cart> GetAll()
+        public List<ShoppingCart> GetAll()
         {
             var result = _repo.GetAll();
-            var list = new List<Cart>();
+            var list = new List<ShoppingCart>();
             foreach (var item in result)
             {
-                list.Add(new Cart()
+                list.Add(new ShoppingCart()
                 {
                     Id = item.Id,
                     ArticleId = item.ArticleId,
@@ -27,14 +27,14 @@ namespace POC_API.Service
             }
             return list;
         }
-        public Cart GetById(int id)
+        public ShoppingCart GetById(int id)
         {
             var result = _repo.GetById(id);
             if (result == null)
             {
                 throw new Exception("Incorrect ID");
             }
-            return new Cart()
+            return new ShoppingCart()
             {
                 Id = result.Id,
                 ArticleId = result.ArticleId,
@@ -42,15 +42,15 @@ namespace POC_API.Service
                 Quantity = result.Quantity,
             };
         }
-        public Cart Create(PostCartDTO postCartDTO)
+        public ShoppingCart Create(PostShoppingCartDTO postCartDTO)
         {
-            var result = _repo.Create(new PostCartDTO()
+            var result = _repo.Create(new PostShoppingCartDTO()
             {
                 ArticleId = postCartDTO.ArticleId,
                 CustomerId = postCartDTO.CustomerId,
                 Quantity = postCartDTO.Quantity,
             });
-            return new Cart()
+            return new ShoppingCart()
             {
                 ArticleId = result.ArticleId,
                 CustomerId = result.CustomerId,
@@ -66,7 +66,7 @@ namespace POC_API.Service
             }
             _repo.DeleteById(result);
         }
-        public Cart UpdateCart(int id, PostCartDTO updateCartDTO)
+        public ShoppingCart UpdateCart(int id, PostShoppingCartDTO updateCartDTO)
         {
             var cart = _repo.GetById(id);
             if (cart == null)

@@ -51,7 +51,7 @@ namespace POC_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("articles");
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("POC_API.Model.Cart", b =>
@@ -73,7 +73,7 @@ namespace POC_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("carts");
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("POC_API.Model.Customer", b =>
@@ -101,7 +101,7 @@ namespace POC_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("customers");
+                    b.ToTable("Customers");
                 });
 #pragma warning restore 612, 618
         }

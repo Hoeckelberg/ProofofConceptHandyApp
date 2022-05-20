@@ -79,7 +79,7 @@ namespace POC_API.Service
             var article = _repo.GetById(id);
             if (article == null)
             {
-                throw new Exception("ID was not found");
+                throw new Exception($"ID {id} was not found");
             }
             article.Id = id;
             article.Name = updateArticleDTO.Name;

@@ -4,43 +4,43 @@ using POC_API.Model;
 
 namespace POC_API.Repository
 {
-    public class CartRepository
+    public class ShoppingCartRepository
     {
         private readonly DataContext context;
 
-        public CartRepository(DataContext context)
+        public ShoppingCartRepository(DataContext context)
         {
             this.context = context;
         }
-        public List<Cart> GetAll()
+        public List<ShoppingCart> GetAll()
         {
-            return context.carts.ToList();
+            return context.ShoppingCarts.ToList();
         }
-        public Cart GetById(int id)
+        public ShoppingCart GetById(int id)
         {
-            var result = context.carts.Find(id);
+            var result = context.ShoppingCarts.Find(id);
             return result;
         }
-        public Cart Create(PostCartDTO postCartDTO)
+        public ShoppingCart Create(PostShoppingCartDTO postCartDTO)
         {
-            Cart cart = new Cart()
+            ShoppingCart cart = new ShoppingCart()
             {
                 ArticleId = postCartDTO.ArticleId,
                 CustomerId = postCartDTO.CustomerId,
                 Quantity = postCartDTO.Quantity,
             };
-            var entityEntry = context.carts.Add(cart);
+            var entityEntry = context.ShoppingCarts.Add(cart);
             context.SaveChanges();
             return entityEntry.Entity;
         }
-        public void DeleteById(Cart cart)
+        public void DeleteById(ShoppingCart cart)
         {
-            context.carts.Remove(cart);
+            context.ShoppingCarts.Remove(cart);
             context.SaveChanges();
         }
-        public Cart Update(Cart cart)
+        public ShoppingCart Update(ShoppingCart cart)
         {
-            var result = context.carts.Update(cart);
+            var result = context.ShoppingCarts.Update(cart);
             context.SaveChanges();
             return result.Entity;
         }

@@ -1,4 +1,6 @@
-import React, { useState, Component } from "react";
+import React, { Component, useState } from "react";
+import { View } from "../components/Themed";
+import IShoppingCart from "../Interfaces/IShoppingCart";
 import {
   MdPriceChange,
   MdArticle,
@@ -8,20 +10,20 @@ import {
 } from "react-icons/md";
 import { AiFillDatabase, AiFillTag } from "react-icons/ai";
 import { BiRename } from "react-icons/bi";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
-import IArticle from "../Interfaces/IArticle";
+import { StyleSheet, Text, TextInput, Button } from "react-native";
 
-interface IArticleModalScreenProps {
+interface IShoppingCartModalScreenProps {
   showModal: boolean;
   toggleModal: () => void;
-  article: IArticle;
-  setSelectedArticle: React.Dispatch<React.SetStateAction<IArticle>>;
+  shoppingCart: IShoppingCart;
+  setPostShoppingCart: React.Dispatch<React.SetStateAction<IShoppingCart>>;
 }
-function updateArticle(article: IArticle) {
-  // write an update article function with fetch
-  fetch(`https://localhost:7013/api/article/${article.id}`, {
-    method: "PUT",
-    body: JSON.stringify(article),
+
+function postShoppingCart(shoppingCart: IShoppingCart) {
+  // write an post ShoppingCart function with fetch
+  fetch(`https://localhost:7013/api/shoppingcart`, {
+    method: "POST",
+    body: JSON.stringify(shoppingCart),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -30,7 +32,10 @@ function updateArticle(article: IArticle) {
     .then((json) => console.log(json))
     .catch((err) => console.log(err));
 }
-export default function ArticleModalScreen(props: IArticleModalScreenProps) {
+
+export default function ShoppingCartModalScreen(
+  props: IShoppingCartModalScreenProps
+) {
   return (
     <div>
       {props.showModal && (
@@ -41,78 +46,49 @@ export default function ArticleModalScreen(props: IArticleModalScreenProps) {
               <View style={styles.itemContainer}>
                 <MdAccountBox color="white" size={50} />
                 <TextInput
-                  editable={false}
-                  value={props.article.id.toString()}
-                  style={styles.textInput}
-                  placeholder="ID"
-                />
-              </View>
-              <View style={styles.itemContainer}>
-                <BiRename color="white" size={50} />
-                <TextInput
-                  onChangeText={(event) =>
-                    props.setSelectedArticle({ ...props.article, name: event })
-                  }
-                  value={props.article.name}
-                  style={styles.textInput}
-                  placeholder="Name"
-                />
-              </View>
-              <View style={styles.itemContainer}>
-                <MdPriceChange color="white" size={50} />
-                <TextInput
                   keyboardType="numeric"
                   onChangeText={(event) =>
-                    props.setSelectedArticle({
-                      ...props.article,
-                      price: parseInt(event !== "" ? event : "0"),
+                    props.setPostShoppingCart({
+                      ...props.shoppingCart,
+                      articleId: parseInt(event),
                     })
                   }
-                  value={props.article.price.toString()}
+                  value={props.shoppingCart.articleId.toString()}
                   style={styles.textInput}
-                  placeholder="Price"
                 />
               </View>
               <View style={styles.itemContainer}>
-                <MdArticle color="white" size={50} />
+                <MdAccountBox color="white" size={50} />
                 <TextInput
+                  keyboardType="number-pad"
                   onChangeText={(event) =>
-                    props.setSelectedArticle({
-                      ...props.article,
-                      description: event,
+                    props.setPostShoppingCart({
+                      ...props.shoppingCart,
+                      customerId: parseInt(event),
                     })
                   }
-                  value={props.article.description}
+                  value={props.shoppingCart.customerId.toString()}
                   style={styles.textInput}
-                  placeholder="Description"
                 />
               </View>
               <View style={styles.itemContainer}>
-                <MdAnnouncement color="white" size={50} />
+                <MdAccountBox color="white" size={50} />
                 <TextInput
-                  value={props.article.available ? "true" : "false"}
+                  keyboardType="number-pad"
+                  onChangeText={(event) => {
+                    props.setPostShoppingCart({
+                      ...props.shoppingCart,
+                      quantity: parseInt(event),
+                    });
+                  }}
+                  value={props.shoppingCart.quantity.toString()}
                   style={styles.textInput}
-                  placeholder="Available"
-                />
-              </View>
-              <View style={styles.itemContainer}>
-                <MdGite color="white" size={50} />
-                <TextInput
-                  onChangeText={(event) =>
-                    props.setSelectedArticle({
-                      ...props.article,
-                      manufacturer: event,
-                    })
-                  }
-                  value={props.article.manufacturer}
-                  style={styles.textInput}
-                  placeholder="Manufacturer"
                 />
               </View>
               <Button
-                title="Update"
+                title="post"
                 color={"black"}
-                onPress={() => updateArticle(props.article)}
+                onPress={() => postShoppingCart(props.shoppingCart)}
               />
               <Button
                 title="close"
@@ -142,6 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
+    color: "white",
   },
   gridContainer: {
     display: "flex",

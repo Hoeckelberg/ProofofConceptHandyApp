@@ -14,11 +14,11 @@ namespace POC_API.Repository
         }
         public List<Article> GetAll()
         {
-            return context.articles.ToList();
+            return context.Articles.ToList();
         }
         public Article GetById(int id)
         {
-            var result = context.articles.Find(id);
+            var result = context.Articles.Find(id);
             return result;
         }
         public Article Create(PostArticleDTO postArticleDTO)
@@ -31,18 +31,18 @@ namespace POC_API.Repository
                 Available = postArticleDTO.Available,
                 Manufacturer = postArticleDTO.Manufacturer
             };
-            var entityEntry = context.articles.Add(article);
+            var entityEntry = context.Articles.Add(article);
             context.SaveChanges();
             return entityEntry.Entity;
         }
         public void DeleteById(Article article)
         {
-            context.articles.Remove(article);
+            context.Articles.Remove(article);
             context.SaveChanges();
         }
         public Article Update(Article article)
         {
-            var result = context.articles.Update(article);
+            var result = context.Articles.Update(article);
             context.SaveChanges();
             return result.Entity;
         }

@@ -27,10 +27,10 @@ builder.AllowAnyOrigin()/*WithOrigins("https://compasslicenseclient.azurewebsite
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<ShoppingCartService>();
 builder.Services.AddScoped<ArticleService>();
 builder.Services.AddScoped<CustomerService>();
-builder.Services.AddScoped<CartRepository>();
+builder.Services.AddScoped<ShoppingCartRepository>();
 builder.Services.AddScoped<ArticleRepository>();
 builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddEndpointsApiExplorer();

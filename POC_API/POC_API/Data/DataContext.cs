@@ -6,8 +6,8 @@ namespace POC_API.Data
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        public DbSet<Article> articles { get; set; }
-        public DbSet<Cart> carts { get; set; }
-        public DbSet<Customer> customers { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

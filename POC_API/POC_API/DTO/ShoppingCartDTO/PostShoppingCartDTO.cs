@@ -1,8 +1,7 @@
-﻿namespace POC_API.Model
+﻿namespace POC_API.DTO
 {
-    public class Cart
+    public class PostShoppingCartDTO
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public int CustomerId { get; set; }
         public int Quantity { get; set; }

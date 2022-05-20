@@ -14,11 +14,11 @@ namespace POC_API.Repository
         }
         public List<Customer> GetAll()
         {
-            return context.customers.ToList();
+            return context.Customers.ToList();
         }
         public Customer GetById(int id)
         {
-            var result = context.customers.Find(id);
+            var result = context.Customers.Find(id);
             return result;
         }
         public Customer Create(PostCustomerDTO postCustomerDTO)
@@ -30,18 +30,18 @@ namespace POC_API.Repository
                 Owner = postCustomerDTO.Owner,
                 PhoneNumber = postCustomerDTO.PhoneNumber,
             };
-            var entityEntry = context.customers.Add(customer);
+            var entityEntry = context.Customers.Add(customer);
             context.SaveChanges();
             return entityEntry.Entity;
         }
         public void DeleteById(Customer customer)
         {
-            context.customers.Remove(customer);
+            context.Customers.Remove(customer);
             context.SaveChanges();
         }
         public Customer Update(Customer customer)
         {
-            var result = context.customers.Update(customer);
+            var result = context.Customers.Update(customer);
             context.SaveChanges();
             return result.Entity;
         }

@@ -9,7 +9,7 @@ namespace POC_API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "articles",
+                name: "Articles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace POC_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "carts",
+                name: "ShoppingCarts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -41,7 +41,7 @@ namespace POC_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "customers",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -60,13 +60,13 @@ namespace POC_API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "articles");
+                name: "Articles");
 
             migrationBuilder.DropTable(
-                name: "carts");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
-                name: "customers");
+                name: "Customers");
         }
     }
 }
