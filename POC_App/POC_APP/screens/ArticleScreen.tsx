@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet } from "react-native";
-import EditScreenInfo from "../components/EditScreenInfo";
+import { Button, StyleSheet, Pressable } from "react-native";
 import { Text, View } from "../components/Themed";
 import IArticle from "../Interfaces/IArticle";
 import articleProvider from "../provider/ArticleProvider";
 import Modal from "./ArticleModalScreen";
 import { RootTabScreenProps } from "../types";
-import { BiShoppingBag, BiEdit } from "react-icons/bi";
-import { AiOutlineEdit } from "react-icons/ai";
-import { BsGear, BsFillCartFill, BsBasket } from "react-icons/bs";
+
 
 export default function ArticleScreen({
   navigation,
@@ -48,8 +45,8 @@ export default function ArticleScreen({
         />
       )}
       <Text style={styles.title}>Article Screen</Text>
-      <br />
-      <div
+      <Text>{"\n"}</Text>
+      <View
         style={{
           display: "flex",
           flexDirection: "column",
@@ -60,29 +57,28 @@ export default function ArticleScreen({
         {article
           ? article.map((a, key) => {
               return (
-                <div key={key} style={{ display: "flex" }}>
+                <View key={key} style={{ display: "flex" }}>
                   <Text>
-                    <BsBasket size={60} /> ID: {a.id}, Name: {a.name}, Price:{" "}
+                    ID: {a.id}, Name: {a.name}, Price:{" "}
                     {a.price}, Description: {a.description}, Available:{" "}
                     {a.available ? "true" : "false"}, Manufacturer:{" "}
                     {a.manufacturer}
                   </Text>
-                  <button
-                    onClick={() => toggleModalWithProps(a)}
+                  <Pressable
+                    onPress={() => toggleModalWithProps(a)} 
                     style={{
-                      backgroundColor: "transparent",
                       marginRight: 0,
                       marginLeft: "auto",
-                      border: "none",
+                      backgroundColor: "white",
                     }}
                   >
-                    <BsGear color="white" size={60} />
-                  </button>
-                </div>
+                    <Text style={{color: 'black'}}>Edit</Text>
+                  </Pressable>
+                </View>
               );
             })
           : null}
-      </div>
+      </View>
     </View>
   );
 }
@@ -102,12 +98,12 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
-  div1: {
+  View1: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
   },
-  div2: {
+  View2: {
     display: "flex",
   },
 });

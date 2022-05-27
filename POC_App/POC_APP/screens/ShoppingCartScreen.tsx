@@ -6,16 +6,38 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Button,
+  Pressable,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import EditScreenInfo from "../components/EditScreenInfo";
-import { BsGear, BsFillCartFill, BsBasket } from "react-icons/bs";
-import { VscAccount } from "react-icons/vsc";
 import Modal from "./ShoppingCartModalScreen";
 import IShoppingCart from "../Interfaces/IShoppingCart";
 import shoppingCartProvider from "../provider/ShoppingCartProvider";
-import { BiCart } from "react-icons/bi";
+import * as SQLite from "expo-sqlite";
+
+// open a sqlite database and create a table
+const db = SQLite.openDatabase("shoppingCart.db");
+
+db.transaction((tx) => {
+  tx.executeSql(
+    "create table if not exists shoppingCart (id integer primary key not null, name text, price float, quantity int, image text)"
+  );
+});
+
+db.transaction((tx) => {
+  tx.executeSql(
+    'insert into shoppingCart (name, price, quantity, image) values ("Bread", "1.00", "1", "https://images-na.ssl-images-amazon.com/images/I/71-1QQQQQQQL._SL1500_.jpg")'
+  );
+});
+
+db.transaction((tx) => {
+  tx.executeSql(
+    "SELECT * FROM shoppingCart WHERE name = ? AND price = ?",
+    ["Bread", "1.00"],
+    (tx, results) => {
+      console.log(results);
+    }
+  );
+});
 
 export default function ShoppingCartScreen() {
   const [showModal, setShowModal] = useState(false);
@@ -51,8 +73,8 @@ export default function ShoppingCartScreen() {
         />
       )}
       <Text style={styles.title}>Shopping Cart Screen</Text>
-      <br />
-      <div
+      <Text>{"\n"}</Text>
+      <View
         style={{
           display: "flex",
           flexDirection: "column",
@@ -63,20 +85,20 @@ export default function ShoppingCartScreen() {
         {shoppingCart
           ? shoppingCart.map((s, key) => {
               return (
-                <div key={key} style={{ display: "flex" }}>
+                <View key={key} style={{ display: "flex" }}>
                   <Text style={{ color: "white" }}>
-                    <BiCart size={60} /> id: {s.id}, articleId: {s.articleId},
+                    id: {s.id}, articleId: {s.articleId},
                     customerId: {s.customerId}, quantity: {s.quantity}
                   </Text>
-                </div>
+                </View>
               );
             })
           : null}
-        <br />
-        <button onClick={() => toggleModalWithProps(postShoppingCart)}>
-          Add new Shopping Cart
-        </button>
-      </div>
+        <Text>{"\n"}</Text>
+        <Pressable style={{backgroundColor: "white",}} onPress={() => toggleModalWithProps(postShoppingCart)}>
+          <Text>View</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

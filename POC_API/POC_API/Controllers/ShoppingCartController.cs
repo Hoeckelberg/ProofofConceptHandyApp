@@ -28,15 +28,15 @@ namespace POC_API.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public IActionResult PostShoppingCart(PostShoppingCartDTO postCartDTO)
+        public IActionResult PostShoppingCart(PostShoppingCartDTO postShoppingCartDTO)
         {
-            var result = _shoppingCartService.Create(postCartDTO);
+            var result = _shoppingCartService.Create(postShoppingCartDTO);
             return Ok(result);
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateShoppingCart(int id, PostShoppingCartDTO updateCartDTO)
+        public IActionResult UpdateShoppingCart(int id, PostShoppingCartDTO updateShoppingCartDTO)
         {
-            var result = _shoppingCartService.UpdateCart(id, updateCartDTO);
+            var result = _shoppingCartService.UpdateShoppingCart(id, updateShoppingCartDTO);
             return Ok(result);
         }
         [HttpDelete("{id}")]

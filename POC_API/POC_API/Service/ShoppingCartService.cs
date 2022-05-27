@@ -42,13 +42,13 @@ namespace POC_API.Service
                 Quantity = result.Quantity,
             };
         }
-        public ShoppingCart Create(PostShoppingCartDTO postCartDTO)
+        public ShoppingCart Create(PostShoppingCartDTO postShoppingCartDTO)
         {
             var result = _repo.Create(new PostShoppingCartDTO()
             {
-                ArticleId = postCartDTO.ArticleId,
-                CustomerId = postCartDTO.CustomerId,
-                Quantity = postCartDTO.Quantity,
+                ArticleId = postShoppingCartDTO.ArticleId,
+                CustomerId = postShoppingCartDTO.CustomerId,
+                Quantity = postShoppingCartDTO.Quantity,
             });
             return new ShoppingCart()
             {
@@ -66,7 +66,7 @@ namespace POC_API.Service
             }
             _repo.DeleteById(result);
         }
-        public ShoppingCart UpdateCart(int id, PostShoppingCartDTO updateCartDTO)
+        public ShoppingCart UpdateShoppingCart(int id, PostShoppingCartDTO updateShoppingCartDTO)
         {
             var cart = _repo.GetById(id);
             if (cart == null)
@@ -74,9 +74,9 @@ namespace POC_API.Service
                 throw new Exception("ID was not found");
             }
             cart.Id = id;
-            cart.ArticleId = updateCartDTO.ArticleId;
-            cart.CustomerId = updateCartDTO.CustomerId;
-            cart.Quantity = updateCartDTO.Quantity;
+            cart.ArticleId = updateShoppingCartDTO.ArticleId;
+            cart.CustomerId = updateShoppingCartDTO.CustomerId;
+            cart.Quantity = updateShoppingCartDTO.Quantity;
             _repo.Update(cart);
             return cart;
         }

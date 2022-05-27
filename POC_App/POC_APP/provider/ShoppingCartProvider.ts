@@ -1,7 +1,6 @@
 import IShoppingCart from '../Interfaces/IShoppingCart';
 import axios from 'axios';
 
-
 const shoppingCartProvider = async ():Promise<IShoppingCart[]> => {
     let articles:IShoppingCart[] = [];
     try {
@@ -12,7 +11,7 @@ const shoppingCartProvider = async ():Promise<IShoppingCart[]> => {
         //         'Access-Control-Allow-Origin': '*',
         //     }
         // });
-        const response = await fetch('https://localhost:7013/api/cart', {mode: 'cors'});
+        const response = await fetch('https://localhost:7013/api/shoppingcart', {mode: 'cors'});
         const data = await response.json();
         console.log("Articles: ",{data});
         articles = data;

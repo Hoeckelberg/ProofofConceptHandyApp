@@ -47,6 +47,7 @@ app.UseCertificateForwarding();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseCors(MyAllowSpecificOrigins);
 app.UseEndpoints(endpoints =>
@@ -54,6 +55,5 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
 });
 
-app.UseAuthorization();
 app.MapControllers();
 app.Run();

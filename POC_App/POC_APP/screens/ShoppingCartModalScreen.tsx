@@ -45,6 +45,7 @@ export default function ShoppingCartModalScreen(
             <View style={styles.gridContainer}>
               <View style={styles.itemContainer}>
                 <MdAccountBox color="white" size={50} />
+                <Text style={{color: 'white'}}>AID</Text>
                 <TextInput
                   keyboardType="numeric"
                   onChangeText={(event) =>
@@ -59,6 +60,7 @@ export default function ShoppingCartModalScreen(
               </View>
               <View style={styles.itemContainer}>
                 <MdAccountBox color="white" size={50} />
+                <Text style={{color: 'white'}}>CID</Text>
                 <TextInput
                   keyboardType="number-pad"
                   onChangeText={(event) =>
@@ -73,6 +75,7 @@ export default function ShoppingCartModalScreen(
               </View>
               <View style={styles.itemContainer}>
                 <MdAccountBox color="white" size={50} />
+                <Text style={{color: 'white'}}>QTY</Text>
                 <TextInput
                   keyboardType="number-pad"
                   onChangeText={(event) => {

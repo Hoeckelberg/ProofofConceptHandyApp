@@ -1,17 +1,9 @@
-import { Button, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import ICustomer from "../Interfaces/ICustomer";
 import customerProvider from "../provider/CustomerProvider";
-import { BsPerson } from "react-icons/bs";
-import { RootTabScreenProps } from "../types";
-import { BiShoppingBag, BiEdit } from "react-icons/bi";
-import { AiOutlineEdit } from "react-icons/ai";
-import { BsGear, BsFillCartFill, BsBasket } from "react-icons/bs";
-import {VscAccount} from "react-icons/vsc"
 import Modal from "./CustomerModalScreen";
-import { MdAccountBox, MdOutlineSwitchAccount } from "react-icons/md";
 
 export default function CustomerScreen() {
   const [showModal, setShowModal] = useState(false);
@@ -48,35 +40,39 @@ export default function CustomerScreen() {
         />
       )}
       <Text style={styles.title}>Customer Screen</Text>
-      <br />
-      <div
+      <Text>{"\n"}</Text>
+      <View
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: '#252625'
+          backgroundColor: "#252625",
         }}
       >
         {customer
           ? customer.map((c, key) => {
               return (
-                <div key={key} style={{ display: "flex" }}>
-                  <Text> 
-                    <VscAccount size={60} /> ID: {c.id}, Name: {c.name},
-                    Address: {c.address}, PhoneNumber: {c.phoneNumber}, 
-                    Owner: {c.owner}
+                <View key={key} style={{ display: "flex" }}>
+                  <Text>
+                    ID: {c.id}, Name: {c.name},
+                    Address: {c.address}, PhoneNumber: {c.phoneNumber}, Owner:{" "}
+                    {c.owner}
                   </Text>
-                  <button
-                    onClick={() => toggleModalWithProps(c)}
-                    style={{ backgroundColor:'transparent', marginRight: 0, marginLeft: "auto", border: "none" }}
+                  <Pressable
+                    onPress={() => toggleModalWithProps(c)}
+                    style={{
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      backgroundColor: "white",
+                    }}
                   >
-                    <BsGear color="white" size={60} />
-                  </button>
-                </div>
+                    <Text style={{color: 'black'}}>Edit</Text>
+                  </Pressable>
+                </View>
               );
             })
           : null}
-      </div>
+      </View>
     </View>
   );
 }
@@ -96,12 +92,12 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
-  div1: {
+  View1: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
   },
-  div2: {
+  View2: {
     display: "flex",
   },
 });

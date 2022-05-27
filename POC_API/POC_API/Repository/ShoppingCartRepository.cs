@@ -21,26 +21,26 @@ namespace POC_API.Repository
             var result = context.ShoppingCarts.Find(id);
             return result;
         }
-        public ShoppingCart Create(PostShoppingCartDTO postCartDTO)
+        public ShoppingCart Create(PostShoppingCartDTO postShoppingCartDTO)
         {
-            ShoppingCart cart = new ShoppingCart()
+            ShoppingCart shoppingCart = new ShoppingCart()
             {
-                ArticleId = postCartDTO.ArticleId,
-                CustomerId = postCartDTO.CustomerId,
-                Quantity = postCartDTO.Quantity,
+                ArticleId = postShoppingCartDTO.ArticleId,
+                CustomerId = postShoppingCartDTO.CustomerId,
+                Quantity = postShoppingCartDTO.Quantity,
             };
-            var entityEntry = context.ShoppingCarts.Add(cart);
+            var entityEntry = context.ShoppingCarts.Add(shoppingCart);
             context.SaveChanges();
             return entityEntry.Entity;
         }
-        public void DeleteById(ShoppingCart cart)
+        public void DeleteById(ShoppingCart shoppingCart)
         {
-            context.ShoppingCarts.Remove(cart);
+            context.ShoppingCarts.Remove(shoppingCart);
             context.SaveChanges();
         }
-        public ShoppingCart Update(ShoppingCart cart)
+        public ShoppingCart Update(ShoppingCart shoppingCart)
         {
-            var result = context.ShoppingCarts.Update(cart);
+            var result = context.ShoppingCarts.Update(shoppingCart);
             context.SaveChanges();
             return result.Entity;
         }

@@ -68,7 +68,6 @@ function BottomTabNavigator() {
         component={ArticleScreen}
         options={({ navigation }: RootTabScreenProps<'Article'>) => ({
           title: 'Article Screen',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -90,7 +89,6 @@ function BottomTabNavigator() {
         component={CustomerScreen}
         options={{
           title: 'Customer Screen',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -98,7 +96,6 @@ function BottomTabNavigator() {
         component={ShoppingCartScreen}
         options={{
           title: 'Shopping Cart Screen',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
