@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet, Pressable } from "react-native";
+import { Button, StyleSheet, Pressable, ScrollView } from "react-native";
 import { Text, View } from "../components/Themed";
 import IArticle from "../Interfaces/IArticle";
 import articleProvider from "../provider/ArticleProvider";
 import Modal from "./ArticleModalScreen";
 import { RootTabScreenProps } from "../types";
-
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell,
+} from "react-native-table-component";
+import { DataTable } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ArticleScreen({
   navigation,
@@ -44,41 +54,52 @@ export default function ArticleScreen({
           setSelectedArticle={setSelectedArticle}
         />
       )}
-      <Text style={styles.title}>Article Screen</Text>
-      <Text>{"\n"}</Text>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          backgroundColor: "#252625",
-        }}
-      >
-        {article
-          ? article.map((a, key) => {
-              return (
-                <View key={key} style={{ display: "flex" }}>
-                  <Text>
-                    ID: {a.id}, Name: {a.name}, Price:{" "}
-                    {a.price}, Description: {a.description}, Available:{" "}
-                    {a.available ? "true" : "false"}, Manufacturer:{" "}
-                    {a.manufacturer}
-                  </Text>
-                  <Pressable
-                    onPress={() => toggleModalWithProps(a)} 
-                    style={{
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    <Text style={{color: 'black'}}>Edit</Text>
-                  </Pressable>
-                </View>
-              );
-            })
-          : null}
-      </View>
+      <ScrollView>
+        <Text style={styles.title}>Article Screen</Text>
+        <Text>{"\n"}</Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            backgroundColor: "#252625",
+          }}
+        >
+          {article
+            ? article.map((a, key) => {
+                return (
+                  <View key={key} style={styles.View1}>
+                    <View style={styles.tablecolumn}>
+                      <Text>ID: </Text>
+                      <Text>Name: </Text>
+                      <Text>Price: </Text>
+                      <Text>Description: </Text>
+                      <Text>Available: </Text>
+                      <Text>Manufacturer: </Text>
+                    </View>
+                    <View style={styles.tablecolumn}>
+                      <Text>{a.id}</Text>
+                      <Text>{a.name}</Text>
+                      <Text>{a.price}</Text>
+                      <Text>{a.description}</Text>
+                      <Text>{a.available ? "true" : "false"}</Text>
+                      <Text>{a.manufacturer}</Text>
+                    </View>
+                    <Pressable
+                      onPress={() => toggleModalWithProps(a)}
+                      style={styles.button}
+                    >
+                      <Text style={styles.buttontext}>E{"\n"}D{"\n"}I{"\n"}T</Text>
+                    </Pressable>
+                  </View>
+                );
+              })
+            : null}
+        </View>
+        <Pressable>
+          <Text>Refresh</Text>
+        </Pressable>
+      </ScrollView>
     </View>
   );
 }
@@ -100,10 +121,41 @@ const styles = StyleSheet.create({
   },
   View1: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "white",
+    borderWidth: 3,
+    margin: 10,
+    padding: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
   },
-  View2: {
+  button: {
     display: "flex",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white",
+    backgroundColor: "gray",
+  },
+  buttontext: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    height: 150,
+    width: 30,
+    textAlignVertical: "center",
+  },
+  tablerow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  tablecolumn: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

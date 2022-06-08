@@ -4,10 +4,12 @@ using POC_API.Repository;
 using Microsoft.EntityFrameworkCore;
 using POC_API.Data;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 // Add services to the container.
 //builder.Services.AddCors(options => options.AddPolicy("corsapp", builder =>
@@ -37,13 +39,32 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddAuthentication(
-        CertificateAuthenticationDefaults.AuthenticationScheme)
-    .AddCertificate();
+//builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(options => {
+//    options.AllowedCertificateTypes = CertificateTypes.SelfSigned;
+//    options.Events = new CertificateAuthenticationEvents
+//    {
+//        OnCertificateValidated = context => {
+//            var validationService = context.HttpContext.RequestServices.GetService<POC_API.CertificateValidation>();
+//            if (validationService.ValidateCertificate(context.ClientCertificate))
+//            {
+//                context.Success();
+//            }
+//            else
+//            {
+//                context.Fail("Invalid certificate");
+//            }
+//            return Task.CompletedTask;
+//        },
+//        OnAuthenticationFailed = context => {
+//            context.Fail("Invalid certificate");
+//            return Task.CompletedTask;
+//        }
+//    };
+//});
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseCertificateForwarding();
+//app.UseAuthentication();
+//app.UseCertificateForwarding();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();

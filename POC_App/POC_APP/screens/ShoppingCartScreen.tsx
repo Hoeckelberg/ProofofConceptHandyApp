@@ -14,30 +14,30 @@ import IShoppingCart from "../Interfaces/IShoppingCart";
 import shoppingCartProvider from "../provider/ShoppingCartProvider";
 import * as SQLite from "expo-sqlite";
 
-// open a sqlite database and create a table
-const db = SQLite.openDatabase("shoppingCart.db");
+// // open a sqlite database and create a table
+// const db = SQLite.openDatabase("shoppingCart.db");
 
-db.transaction((tx) => {
-  tx.executeSql(
-    "create table if not exists shoppingCart (id integer primary key not null, name text, price float, quantity int, image text)"
-  );
-});
+// db.transaction((tx) => {
+//   tx.executeSql(
+//     "create table if not exists shoppingCart (id integer primary key not null, name text, price float, quantity int, image text)"
+//   );
+// });
 
-db.transaction((tx) => {
-  tx.executeSql(
-    'insert into shoppingCart (name, price, quantity, image) values ("Bread", "1.00", "1", "https://images-na.ssl-images-amazon.com/images/I/71-1QQQQQQQL._SL1500_.jpg")'
-  );
-});
+// db.transaction((tx) => {
+//   tx.executeSql(
+//     'insert into shoppingCart (name, price, quantity, image) values ("Bread", "1.00", "1", "https://images-na.ssl-images-amazon.com/images/I/71-1QQQQQQQL._SL1500_.jpg")'
+//   );
+// });
 
-db.transaction((tx) => {
-  tx.executeSql(
-    "SELECT * FROM shoppingCart WHERE name = ? AND price = ?",
-    ["Bread", "1.00"],
-    (tx, results) => {
-      console.log(results);
-    }
-  );
-});
+// db.transaction((tx) => {
+//   tx.executeSql(
+//     "SELECT * FROM shoppingCart WHERE name = ? AND price = ?",
+//     ["Bread", "1.00"],
+//     (tx, results) => {
+//       console.log(results);
+//     }
+//   );
+// });
 
 export default function ShoppingCartScreen() {
   const [showModal, setShowModal] = useState(false);

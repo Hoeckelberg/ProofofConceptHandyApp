@@ -12,11 +12,10 @@ const articleProvider = async ():Promise<IArticle[]> => {
         //         'Access-Control-Allow-Origin': '*',
         //     }
         // });
-        const response = await fetch('https://localhost:7013/api/article', {mode: 'cors'});
+        const response = await fetch('http://10.0.2.2:5013/api/article', {mode: 'cors'});
         const data = await response.json();
         console.log("Articles: ",{data});
         articles = data;
-        
     } catch (error) {
         console.log(error);
         articles = [{
